@@ -38,14 +38,14 @@ int main(int argc, char **argv)
 	int points = 0;
 	int plays = 0;
 	int x = 1;
-	while (x = 1)
+	while (x == 1)
 	    {
-	    char menu_input; //definimos a variavÈl onde iremos guardar o input do menu principal
+	    char menu_input; //definimos a variav√©l onde iremos guardar o input do menu principal
 	    scanf (" %c", &menu_input);
 	    
-    	    if (menu_input == 'q') { //Trato das funÁıes mais simples primeiro para que o cÛdigo n„o fique confuso logo no Ìnico
+    	    if (menu_input == 'q') { //Trato das fun√ß√µes mais simples primeiro para que o c√≥digo n√£o fique confuso logo no √≠nico
     	        
-    	        //print_status();
+    	        print_status();
     	        printf("Bye");
     	        return 0;
     	    }
@@ -69,19 +69,19 @@ int main(int argc, char **argv)
     	        int r[4];
                 
     	        puts(MSG_SORT);
-                minmax_gen(level, &n, &z); //funÁ„o da tabela onde est„o os valores para cada "level"
+                minmax_gen(level, &n, &z); //fun√ß√£o da tabela onde est√£o os valores para cada "level"
                 
-                for(i = 0; i < 4; i++) {  //um "for" para iterar o processo da funÁ„o "rand" dar os n˙meros randomizados, e de seguida colocamo-los numa lista
+                for(i = 0; i < 4; i++) {  //um "for" para iterar o processo da fun√ß√£o "rand" dar os n√∫meros randomizados, e de seguida colocamo-los numa lista
                     r[i] = rand_number(n, z);
         	    }
     	        printf("%d, %d, %d, %d\n", r[0], r[1], r[2], r[3]);
     	       
-    	        do {  // colocamos um "do" para executar esta parte do cÛdigo, na qual ficamos atÈ os numeros no array do utilizador serem iguais ao array gerado pelo computador.
+    	        do {  // colocamos um "do" para executar esta parte do c√≥digo, na qual ficamos at√© os numeros no array do utilizador serem iguais ao array gerado pelo computador.
     	            numeros_validos = true;
         	        for (i = 0; i < 4; ++i) {
-        	            scanf ("%d", &number_input[i]);  //pedimos ao jogador os n˙meros
+        	            scanf ("%d", &number_input[i]);  //pedimos ao jogador os n√∫meros
         	        }
-        	        for (i = 0; i < 4; ++i) {   // criamos uma lista que ir· ser organizada, que È igual · lista dada pelo computador
+        	        for (i = 0; i < 4; ++i) {   // criamos uma lista que ir√° ser organizada, que √© igual √° lista dada pelo computador
         	            organized_list[i] = r[i];
         	        }
                     for (i = 0; i < 4; ++i) {   // organizamos a lista criada anteriormente
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
                             }
                         }
                     }
-                    // Verificamos se os n˙meros que o utilizador deu correspondem aos que foram dados pelo jogo
+                    // Verificamos se os n√∫meros que o utilizador deu correspondem aos que foram dados pelo jogo
                     for (i = 0; i < 4; i++) {
                         if (number_input[i] == r[0] || number_input[i] == r[1] || number_input[i] == r[2] || number_input[i] == r[3]) {
                         }
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
                     }
     	        } while (numeros_validos == false); // este while pertence ao "do"
             
-                //verificamos se os n˙meros que o utilizdor est„o bem ordenados
+                //verificamos se os n√∫meros que o utilizdor est√£o bem ordenados
                 if (number_input[0] == organized_list[0] && number_input[1] == organized_list[1] && number_input[2] == organized_list[2] && number_input[3] == organized_list[3]) {
                     points += 5;
                     plays += 1;
@@ -119,7 +119,7 @@ int main(int argc, char **argv)
     	    else {
     	        puts(MSG_UNKNOWN);
     	    }
-    	    // parte final do while prim·rio no qual damos valores a algumas variavies para a prÛxima jogada e verificamos se o jogo terminou
+    	    // parte final do while prim√°rio no qual damos valores a algumas variavies para a pr√≥xima jogada e verificamos se o jogo terminou
     	    numeros_validos = true;
     	    level = level_func(points);
     	    if (level == 6) {
@@ -137,29 +137,32 @@ int main(int argc, char **argv)
     	}
 return 0;
 }
-int level_func(int points) //esta funÁ„o determina o "level" a partir dos pontos que o jogador tem
+int level_func(int points) //esta fun√ß√£o determina o "level" a partir dos pontos que o jogador tem
 {
     if (points < 10) {
         return 1;
     }
-    if (points < 20) {
+    else if (points < 20) {
         return 2;
     }
-    if (points < 30) {
+    else if (points < 30) {
         return 3;
     }
-    if (points < 40) {
+    else if (points < 40) {
         return 4;
     }
-    if (points < 50) {
+    else if (points < 50) {
         return 5;
     }
-    if (points == 50) {
+    else if (points == 50) {
         return 6;
+    }
+    else {
+    	return 1;
     }
 }
 
-// Tabela de intervalos para a funÁ„o "rand"
+// Tabela de intervalos para a fun√ß√£o "rand"
 void minmax_gen(int level, int *n, int *z)
 {
     switch (level){
@@ -220,26 +223,3 @@ void print_menu(void)
 	puts("| s - show your status        |");
 	puts("+-----------------------------+");
 }
-
-
-
-
-
-
-
-
-https://stackoverflow.com/questions/14146434/using-scanf-for-reading-an-unsigned-char
-
-https://stackoverflow.com/questions/13542055/how-to-do-scanf-for-single-char-in-c/13543113
-
-https://www.tutorialspoint.com/c_standard_library/c_function_atoi.htm
-
-https://subscription.packtpub.com/book/application_development/9781789617450/1/ch01lvl1sec14/finding-the-difference-between-two-sets-or-arrays
-
-https://stackoverflow.com/questions/26208788/can-someone-explain-how-to-append-an-element-to-an-array-in-c-programming
-
-https://www.tutorialspoint.com/cprogramming/c_return_arrays_from_function.htm
-
-Acho que È obvio que me basei muito nos lsides dados em aula e que foram extremamente uteis acima tudo
-Falei com o Gabriel e com o Pedro Coutinho
-E ajudei o grupo do Jo„o GonÁalves, Fransisco Salgado e o outro Jo„o
